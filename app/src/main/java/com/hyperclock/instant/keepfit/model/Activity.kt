@@ -35,7 +35,7 @@ data class Activity(
     @SerializedName("lastModified")
     val lastModified: String,
     @SerializedName("logId")
-    val logId: Int,
+    val logId: Long,
     @SerializedName("logType")
     val logType: String,
     @SerializedName("manualValuesSpecified")

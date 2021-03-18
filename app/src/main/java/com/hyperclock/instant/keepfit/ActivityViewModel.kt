@@ -42,14 +42,9 @@ class ActivityViewModel @ViewModelInject constructor(
                 activitiesResponse.value!!.data!!.activities.forEach {
                     Log.d("ActivityViewModel", it.calories.toString())
                 }
-
                 // add caching logic here
-                /*val foodRecipe = activitiesResponse.value!!.data
-                if(foodRecipe != null){
-                    offlineCacheRecipes(foodRecipe)
-                }*/
             } catch (e: Exception) {
-                activitiesResponse.value = NetworkResult.Error("Recipes not found.")
+                activitiesResponse.value = NetworkResult.Error("${e.message}")
             }
         } else {
             activitiesResponse.value = NetworkResult.Error("No internet connection")
@@ -65,7 +60,7 @@ class ActivityViewModel @ViewModelInject constructor(
                 return NetworkResult.Error("API key is limited")
             }
             response.body()!!.activities.isNullOrEmpty() -> {
-                return NetworkResult.Error("Recipes not found.")
+                return NetworkResult.Error("Activities not found.")
             }
             response.isSuccessful -> {
                 val activitiesResponse = response.body()

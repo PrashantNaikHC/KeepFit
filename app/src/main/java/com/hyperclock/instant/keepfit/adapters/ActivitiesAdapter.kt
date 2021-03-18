@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.activities_row_layout.view.*
 class ActivitiesAdapter(private val context: Context) :
     RecyclerView.Adapter<ActivitiesAdapter.MyViewHolder>() {
 
-    private var activityList = emptyList<Activity>()
+    private var activityList = listOf<Activity>()
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
@@ -43,5 +43,6 @@ class ActivitiesAdapter(private val context: Context) :
     fun setData(newIngredients: List<Activity>) {
         Log.d("ActivitiesAdapter", "Loading new list")
         activityList = newIngredients
+        notifyDataSetChanged()
     }
 }
